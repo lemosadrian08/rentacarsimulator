@@ -1,0 +1,23 @@
+.cardContainer{
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.card{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cardImage{
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.cardButton{
+    width: 250px;
+}
+
+
+

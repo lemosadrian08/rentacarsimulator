@@ -4,8 +4,10 @@ const autoSeleccionado=[]
 const dias=[]
 const diaSeleccionadoEntrega=[]
 const diaSeleccionadoDevolucion=[]
-let saldo = 40000
-
+let autosRentados=[]
+let usuarioNuevo= ""
+let saldo =""
+autosRentados=JSON.parse(localStorage.getItem("usuario"))
 class Auto{
     constructor(marca, modelo, precio, img) {
         this.id=autos.length
@@ -34,34 +36,146 @@ dias.push(new Dia ("Viernes"))
 dias.push(new Dia ("Sabado"))
 dias.push(new Dia ("Domingo"))
 
-mostrarAutos(autos)
 
-function mostrarAutos(autos){
-    const preguntaAuto=document.createElement("h3")
-    preguntaAuto.innerHTML=`Seleccione el vehiculo que desea rentar`
-    document.body.appendChild(preguntaAuto)
-    for (const auto of autos){
-        let card = document.createElement("div")
-        card.innerHTML+= `<div class="card" style="width: 18rem;">
-      <img src="${auto.img}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">${auto.marca} ${auto.modelo}</h5>
-        <p class="card-text">$${auto.precio}/dia</p>
-      </div>
-    </div>`;
-    for (const auto of autos){
-        document.body.appendChild(card)}
-        
-        let btnRent = document.createElement('button');
-        btnRent.textContent=`Rentar`
-        document.body.appendChild(btnRent)
-        btnRent.onclick= ()=>{
-            rentarAuto(auto.id)
-            mostrarDias() 
-        }
+class Autorentado{
+    constructor(usuario, modelo, diaSeleccionadoEntrega, diaSeleccionadoDevolucion){
+        this.usuario=usuario
+        this.modelo=modelo
+        this.diaSeleccionadoEntrega=diaSeleccionadoEntrega
+        this.diaSeleccionadoDevolucion=diaSeleccionadoDevolucion
+    }
+    
+}
+
+const contenedorUsuario =document.querySelector('.contenedorUsuario')
+const preguntaUsuario=document.createElement('h3')
+const formUsuario=document.querySelector('.formUsuario')
+const usuario=document.createElement("input")
+const saldoRange=document.querySelector('#saldo')
+const btnUsuario=document.createElement("button")
+
+const cardContainer = document.querySelector('.cardContainer');
+const contenedorEntrega = document.querySelector('.contenedorEntrega')
+const contenedorDiasEntrega = document.querySelector('.contenedorDiasEntrega')
+const preguntaEntrega=document.createElement("h3")
+const respuestaEntrega = document.createElement("h3")
+
+const contenedorDevolucion=document.querySelector('.contenedorDevolucion')
+const contenedorDiasDevolucion = document.querySelector('.contenedorDiasDevolucion')
+const preguntaDevolucion=document.createElement("h3")
+const respuestaDevolucion = document.createElement("h3")
+
+const contenedorPago = document.querySelector('.contenedorPago')
+const contenedorBotonPagar =document.querySelector('.contenedorBotonPagar')
+const preguntaPago = document.createElement("h3")
+const btnPagar =document.createElement("button")
+
+
+const contenedorResumen=document.querySelector('.contenedorResumen')
+const resumen =document.createElement("h3")
+
+
+verificacionLS()
+
+function verificacionLS(){
+    if (autosRentados==null){
+        autosRentados=[]
+        ingresarUsuario()
+
+    }else{
+
+        ingresarUsuario()
     }
 }
 
+function ingresarUsuario(){
+preguntaUsuario.innerHTML="Ingrese su nombre de usuario y defina su saldo"
+
+btnUsuario.innerHTML="Crear"
+contenedorUsuario.prepend(preguntaUsuario)
+formUsuario.append(usuario)
+formUsuario.append(saldoRange)
+formUsuario.append(btnUsuario)
+
+
+formUsuario.onsubmit = (e)=>{
+    e.preventDefault()
+    limiarUsuario()
+    usuarioNuevo= e.target.children[0].value
+    saldo=e.target.children[1].value
+    crearUsuario(usuarioNuevo)
+    contenedorUsuario.innerHTML=""
+}
+
+}
+
+function crearUsuario(e){
+    if(usuarioNuevo!=""){
+        mostrarAutos()  
+    }else{
+        alert("por favor ingrese un usuario")
+        ingresarUsuario()
+    }
+
+    
+
+}
+
+function limiarUsuario(){
+    cardContainer.innerHTML=""
+    contenedorDiasEntrega.innerHTML=""
+    contenedorEntrega.innerHTML=""
+    contenedorDiasDevolucion.innerHTML=""
+    contenedorDevolucion.innerHTML=""
+    contenedorResumen.innerHTML=""
+    contenedorPago.innerHTML=""
+} 
+
+
+    function mostrarAutos() {
+        limpiarAutos()
+        autos.forEach(auto => {
+
+            const card = document.createElement('div');
+            card.classList.add('card');
+    
+            const cardImage = document.createElement('img');
+            cardImage.src = auto.img;
+            cardImage.classList.add('cardImage');
+    
+            const cardtitle = document.createElement('h3');
+            cardtitle.textContent = `${auto.marca} ${auto.modelo}`;
+
+            const cardText = document.createElement('p')
+            cardText.textContent = `$${auto.precio}/dia`
+    
+            const btnRentar = document.createElement('button');
+            btnRentar.className = "cardButton";
+            btnRentar.textContent = "Rentar";
+            btnRentar.onclick = () => {
+                                        rentarAuto(auto.id)
+                                        preguntaEntregaFuncion() 
+            };
+    
+            card.appendChild(cardImage);
+            card.appendChild(cardtitle);
+            card.appendChild(cardText)
+            card.appendChild(btnRentar);
+            
+            cardContainer.appendChild(card);
+        })
+    }
+
+    function limpiarAutos(){
+        cardContainer.innerHTML=""
+        contenedorDiasEntrega.innerHTML=""
+        contenedorEntrega.innerHTML=""
+        contenedorDiasDevolucion.innerHTML=""
+        contenedorDevolucion.innerHTML=""
+        contenedorResumen.innerHTML=""
+        contenedorPago.innerHTML=""
+    } 
+    
 function rentarAuto(id){
     autoSeleccionado.pop()
     const seleccion = autos.find(auto => auto.id == id)
@@ -69,97 +183,163 @@ function rentarAuto(id){
 
 }
 
-function mostrarDias(){
-    const preguntaEntrega=document.createElement("h3")
+function preguntaEntregaFuncion(){
+    limpiarEntrega()
+    contenedorEntrega.append(contenedorDiasEntrega)
     preguntaEntrega.innerHTML=`Seleccione el dia de entrega del auto`
-    document.body.appendChild(preguntaEntrega)
+    contenedorEntrega.prepend(preguntaEntrega)
 
     for (const dia of dias){
-        const btnseleccionDia = document.createElement("div")
-        btnseleccionDia.innerHTML=`<button>${dia.dia}</button>`
-        document.body.appendChild(btnseleccionDia)
-        btnseleccionDia.onclick= ()=>{
-            rentarDia(dia.id)
+        const btnSeleccionDiaEntrega = document.createElement("button")
+        btnSeleccionDiaEntrega.innerHTML=`${dia.dia}`
+        contenedorDiasEntrega.appendChild(btnSeleccionDiaEntrega)
+        btnSeleccionDiaEntrega.onclick= ()=>{
+            diaEntrega(dia.id)
     }
-
-
     }
-
 }
+ function limpiarEntrega(){
+    contenedorDiasEntrega.innerHTML=""
+    contenedorEntrega.innerHTML=""
+    contenedorDiasDevolucion.innerHTML=""
+    contenedorDevolucion.innerHTML=""
+    contenedorResumen.innerHTML=""
+    contenedorPago.innerHTML=""
+} 
 
-function rentarDia(id){
+function diaEntrega(id){
     diaSeleccionadoEntrega.pop()
     const seleccion = dias.find(dia=> dia.id ==id)
     diaSeleccionadoEntrega.push(seleccion)
-    notificacion(autoSeleccionado,diaSeleccionadoEntrega)
+    respuestaEntregaFuncion(autoSeleccionado,diaSeleccionadoEntrega)
 }
 
-function notificacion (autoSeleccionado,diaSeleccionadoEntrega){
-    const mensajeNotificacion = document.createElement("h2")
-    mensajeNotificacion.innerHTML= `Le entregaremos el ${autoSeleccionado[0].marca} ${autoSeleccionado[0].modelo} el dia ${diaSeleccionadoEntrega[0].dia}`
-    document.body.appendChild(mensajeNotificacion)
-    mostrarDiaDevolucion()
+function respuestaEntregaFuncion(autoSeleccionado,diaSeleccionadoEntrega){
+    respuestaEntrega.innerHTML= `Le entregaremos el ${autoSeleccionado[0].marca} ${autoSeleccionado[0].modelo} el dia ${diaSeleccionadoEntrega[0].dia}`
+    contenedorEntrega.append(respuestaEntrega)
+    preguntaDevolucionFuncion()
 }
 
-function mostrarDiaDevolucion (){
-    const preguntaDevolucion=document.createElement("h3")
+function preguntaDevolucionFuncion (){
+
+    lipiarDevolucion()
+    contenedorDevolucion.append(contenedorDiasDevolucion)
+
     preguntaDevolucion.innerHTML=`Seleccione el dia que usted devolvera el auto`
-    document.body.appendChild(preguntaDevolucion)
+    contenedorDevolucion.prepend(preguntaDevolucion)
+
     for (const dia of dias){
-        const btnseleccionDia = document.createElement("div")
-        btnseleccionDia.innerHTML=`<button>${dia.dia}</button>`
-        document.body.appendChild(btnseleccionDia)
-        btnseleccionDia.onclick= ()=>{
+        const btnSeleccionDiaDevolucion = document.createElement("button")
+        btnSeleccionDiaDevolucion.innerHTML=`${dia.dia}`
+        contenedorDiasDevolucion.append(btnSeleccionDiaDevolucion)
+        btnSeleccionDiaDevolucion.onclick= ()=>{
         diaDevolucion(dia.id)
         }
     }
 
 }
+
+function lipiarDevolucion(){
+    contenedorDiasDevolucion.innerHTML=""
+    contenedorDevolucion.innerHTML=""
+    contenedorResumen.innerHTML=""
+    contenedorPago.innerHTML=""
+
+} 
 function diaDevolucion(id){
     diaSeleccionadoDevolucion.pop()
     const seleccion = dias.find(dia=> dia.id ==id)
     diaSeleccionadoDevolucion.push(seleccion)
-    notificacionDevolucion(autoSeleccionado,diaSeleccionadoDevolucion)
+
+    const autoAlmacenado = JSON.parse(localStorage.getItem("usuario"));
+  
+
+if(autoAlmacenado==null){
+    respuestaDevolucionFuncion(autoSeleccionado,diaSeleccionadoDevolucion)
+}else{
+    if(diaSeleccionadoDevolucion[0].id<(diaSeleccionadoEntrega[0].id)){
+      alert("El dia de entrega no puede ser menor que el dia de devolucion, seleccione nuevamente el dia de entrega")
+      preguntaEntregaFuncion()
+    }else{ 
+        console.log("almacenado "+autoAlmacenado.length)
+        console.log( autoAlmacenado)
+        let filtroAuto= autoAlmacenado.filter((usuario)=>usuario.modelo==autoSeleccionado[0].modelo)
+
+        console.log("filtrado auto "+filtroAuto.length)
+        console.log( filtroAuto)
+         let filtroDia = filtroAuto.filter((usuario)=>
+
+        (usuario.diaSeleccionadoEntrega<=diaSeleccionadoEntrega[0].id)&&(diaSeleccionadoEntrega[0].id<=usuario.diaSeleccionadoDevolucion)||
+        (usuario.diaSeleccionadoEntrega<=diaSeleccionadoDevolucion[0].id)&&(diaSeleccionadoDevolucion[0].id<=usuario.diaSeleccionadoDevolucion)
+
+         )
+
+          console.log("filtrado dia "+ filtroDia.length)
+          console.log(filtroDia.inRange)
+
+        if(filtroDia.length==0){
+            
+            respuestaDevolucionFuncion(autoSeleccionado,diaSeleccionadoDevolucion)  
+        }else{
+
+            alert("El vehiculo que desea alquilar ya esta alquilado en la fecha que usted selecciono.Puede elegir otro vehiculo o camiar la fecha")
+            mostrarAutos()         
+        } 
+    }
+}
+}
+function respuestaDevolucionFuncion (autoSeleccionado,diaSeleccionadoDevolucion){
+    respuestaDevolucion.innerHTML= `Usted debera devolver el ${autoSeleccionado[0].marca} ${autoSeleccionado[0].modelo} el dia ${diaSeleccionadoDevolucion[0].dia}`
+    contenedorDevolucion.append(respuestaDevolucion)
+    preguntaPagoFuncion(autoSeleccionado,diaSeleccionadoEntrega,diaSeleccionadoDevolucion)
 }
 
-function notificacionDevolucion (autoSeleccionado,diaSeleccionadoDevolucion){
-    const mensajeNotificacion = document.createElement("h2")
-    mensajeNotificacion.innerHTML= `Usted debera devolver el ${autoSeleccionado[0].marca} ${autoSeleccionado[0].modelo} el dia ${diaSeleccionadoDevolucion[0].dia}`
-    document.body.appendChild(mensajeNotificacion)
-    total(autoSeleccionado,diaSeleccionadoEntrega,diaSeleccionadoDevolucion)
-}
-
-function total (autoSeleccionado,diaSeleccionadoEntrega,diaSeleccionadoDevolucion){
+function preguntaPagoFuncion(autoSeleccionado,diaSeleccionadoEntrega,diaSeleccionadoDevolucion){
+    limpiarPagar() 
     const totalDias = (diaSeleccionadoDevolucion[0].id-diaSeleccionadoEntrega[0].id+1)
     const totalPrecio= totalDias*autoSeleccionado[0].precio
-    const resumen=document.createElement("h3")
-    resumen.innerHTML=`El costo por alqular el ${autoSeleccionado[0].marca} ${autoSeleccionado[0].modelo} por ${totalDias} dias es de $${totalPrecio} <br>Usted dispone de un saldo de $${saldo}<br>¿Desea abonarlo?`
-    document.body.appendChild(resumen)
-    preguntaPago(totalPrecio)
+
+    preguntaPago.innerHTML=`El costo por alquilar el ${autoSeleccionado[0].marca} ${autoSeleccionado[0].modelo} por ${totalDias} dias es de $${totalPrecio} <br>Usted dispone de un saldo de $${saldo}<br>¿Desea abonarlo?`
+    contenedorPago.prepend(preguntaPago)
+    botonPagar(totalPrecio)
 }
 
-function preguntaPago(totalPrecio){
+ function limpiarPagar(){
+    contenedorResumen.innerHTML=""
+    contenedorPago.innerHTML=""
+}  
 
-    const btnPagar =document.createElement("button")
+
+function botonPagar(totalPrecio){
+
+    contenedorPago.append(contenedorBotonPagar)
     btnPagar.innerHTML=`Pagar`
-    document.body.appendChild(btnPagar)
+    contenedorBotonPagar.append(btnPagar)
     btnPagar.onclick=()=>{
-        pagar(totalPrecio)
+        resumenFuncion(totalPrecio)
     }
 }
 
-function pagar(totalPrecio){
-    console.log(totalPrecio)
+function resumenFuncion(totalPrecio){
+     limpiarResumen()
     if (totalPrecio<=saldo){
         saldo -=totalPrecio
-        const saludo =document.createElement("h3")
-        saludo.innerHTML=`El pago se realizo con exito, gracias por confiar en nosotros!<br>Le entregaremos el vehiculo el dia ${diaSeleccionadoEntrega[0].dia}<br>Su saldo ahora es de $${saldo}`
-        document.body.appendChild(saludo)
+        resumen.innerHTML=`El pago se realizo con exito, gracias por confiar en nosotros!<br>Le entregaremos el vehiculo el dia ${diaSeleccionadoEntrega[0].dia}<br>Su saldo ahora es de $${saldo}`
+        contenedorResumen.appendChild(resumen)
+        saldo=""
+        autosRentados.push(new Autorentado(usuarioNuevo,autoSeleccionado[0].modelo,diaSeleccionadoEntrega[0].id,diaSeleccionadoDevolucion[0].id))
+        localStorage.setItem('usuario', JSON.stringify(autosRentados))
 
     }else if(totalPrecio>saldo){
         alert("saldo insuficiente")
     }else{
         alert("error")
     }
+ 
+}
+
+ function limpiarResumen(){
+    contenedorPago.innerHTML=""
 
 }
+ 
