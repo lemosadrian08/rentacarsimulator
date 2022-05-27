@@ -1,0 +1,21 @@
+[{
+    "id":1,
+    "marca":"Fiat",
+    "modelo":"Cronos",
+    "precio":5000,
+    "img":"https://www.autoweb.com.ar/wp-content/uploads/2021/08/cronos-1.8.jpg"
+},
+{
+    "id":2,
+    "marca":"Chevrolet",
+    "modelo":"Onix",
+    "precio":6000,
+    "img":"https://www.megautos.com/wp-content/uploads/2019/11/Nuevo-Onix-Hatch-dinamica.jpg"
+},
+{
+    "id":3,
+    "marca":"Ford",
+    "modelo":"Raptor",
+    "precio":10000,
+    "img":"https://www.autoaubaine.com/special/images/dossier/Ford_F_150_Raptor.jpg"
+}] 

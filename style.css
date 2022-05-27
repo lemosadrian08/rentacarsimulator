@@ -37,3 +37,32 @@
 .checkbox{
     margin: 9px;
 }
+
+
+.wrapper {
+    display: grid;
+    grid-template-areas:
+    "card card card"
+    "entrega devolucion pago"
+    "sya sya pago";
+}
+
+.cardContainer{
+grid-area: card;
+}
+
+.contenedorEntrega{
+grid-area: entrega;
+}
+
+.contenedorDevolucion{
+grid-area: devolucion;
+}
+
+.contenedorSegurosYAdicionales{
+grid-area: sya;
+}
+
+.contenedorPago{
+grid-area: pago;
+}
