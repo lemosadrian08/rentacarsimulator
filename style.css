@@ -38,6 +38,11 @@
     margin: 9px;
 }
 
+.imagenRentado{
+    object-fit: cover;
+    width: 300px;
+    height: 200px;
+}
 
 .wrapper {
     display: grid;
