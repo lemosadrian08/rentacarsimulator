@@ -1,73 +1,607 @@
-.cardContainer{
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+body {
+    font-family: 'Oswald', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eeeeee;
+    font-size: 1.3rem;
+    grid-template-areas:
+        "titulo"
+        "usuario"
+        "card"
+        "eyd"
+        "sya"
+        "pago"
+        "rentados";
+}
+
+
+
+
+h3 {
+    font-size: 1.7rem;
+    margin: 0.5rem 0;
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+
+
+
+
+
+.tituloPrincipal {
+    grid-area: titulo;
+    text-align: center;
+    width: 100%;
+    padding: 0.6em 0;
+    font-size: 2rem;
+    font-weight: 500;
+    background-color: #ff3c00;
+}
+
+.contenedorUsuario {
+    grid-area: usuario;
+    background-color: white;
+    display: flex;
+    width: 93%;
+    margin: 1rem 0 0 0;
+    flex-direction: column;
+    box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
+}
+
+.preguntaUsuario {
+    text-align: center;
+    margin: 1rem;
+
+}
+
+.inputUsuario {
+    width: 90%;
+    font-family: 'Oswald', sans-serif;
+    margin: 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+.saldoRangeUsuario {
+    width: 90%;
+    margin: 0.5rem 0;
+}
+
+.textRangeUsuario {
+    border: none;
+    display: block;
+    width: 3.9rem;
+    font-size: 1.3rem;
+    font-family: 'Oswald', sans-serif;
+
+}
+
+.date1,
+.date2 {
+    font-family: 'Oswald', sans-serif;
+    width: 9rem;
+    font-size: 1.3rem;
+}
+
+.cardContainer {
     display: flex;
     text-align: center;
     justify-content: space-evenly;
+    background-color: #eeeeee;
+    width: 100%;
 }
-.card{
-    width: 300px;
+
+.formUsuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 1rem 0;
+}
+
+.card {
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin: 0.5rem;
+    padding-top: 0.7rem;
+    box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
+}
+
+.cardImage {
+    width: 85%;
+    margin: 0.35rem;
+    height: 10rem;
+    object-fit: cover;
+}
+
+.cardtitle {
+    font-size: 1.6rem;
+    margin: 0.3rem 0;
+}
+
+.cardText {
+    font-size: 1.4rem;
+    margin: 0.3rem 0;
+}
+
+.cardButton {}
+
+#textRange {
+    border: none
+}
+
+.segurosTitulo,
+.adicionalesTitulo,
+.contenedorAdicionales,
+.contenedorSeguros {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 0.5rem;
+
+
+}
+
+.number {
+    width: 2rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+}
+
+.checkbox {
+    margin: 0.55rem;
+    cursor: pointer;
+}
+
+.tituloRentado {
+    font-size: 2rem;
+}
+
+.imagenRentado {
+    object-fit: cover;
+    width: 100%;
+}
+
+
+
+.cardContainer {
+    grid-area: card;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contenedorEDSA {
+    grid-area: edsa;
+    background-color: white;
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
+}
+
+.contenedorEntregaYDevolucion {
+    grid-area: eyd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 93%;
+}
+
+.contenedorEntrega {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 93%;
+}
+
+.contenedorDevolucion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 93%;
+}
+
+
+.contenedorSegurosYAdicionales {
+    grid-area: sya;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 93%;
+
+
+
+
+}
+
+.contenedorPago {
+    grid-area: pago;
+    background-color: black;
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding-bottom: 1rem; */
+    margin-bottom: 1rem;
+    box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
+}
+
+.pSyA {
+    margin: 0.4rem;
+    line-height: 1.5rem;
+}
+
+.booster {
+    padding-bottom: 1rem;
+}
+
+.numberText {
+    margin-left: 1rem;
+}
+
+.pPago {
+    line-height: 2rem;
+
+}
+
+.contenedorbtnPagar {
+    display: flex;
+    justify-content: center;
+
+}
+
+.btnUsuario,
+.botonVolver,
+.btnPagar,
+.reiniciar,
+.borrarRegistro,
+.btnRentar {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    background-color: black;
+    color: white;
+    width: 90%;
+    margin: 0.45rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.btnRentar {
+    margin: 0 0 1rem 0;
+}
+
+.botonVolver,
+.btnPagar {
+    background-color: #ff3c00;
+    color: black;
+    width: 100%;
+    margin: 1rem;
+}
+
+
+
+.contenedorPorRentar,
+.contenedorFechas,
+.contenedorDetalle,
+.contenedorTotal {
+    color: white;
+    display: flex;
+    width: 93%;
+    flex-direction: column;
+}
+
+.contenedorTotal,
+.contenedorPorRentar {
+
+    align-items: center;
+}
+
+
+.mostrarRentado {
+    line-height: 1.5rem;
+    margin: 0.5rem;
+}
+
+.contenedorMostrarRentados {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contenedorRentados {
+    grid-area: rentados;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 93%;
+    box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
+}
+
+
+.contenedorBotones {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.cardImage{
-    width: 250px;
-    height: 150px;
-    object-fit: cover;
+
+
+@media (min-width: 380px) {
+
+    .cardImage {
+        height: 12rem;
+    }
 }
 
-.cardButton{
-    width: 250px;
+@media (min-width: 600px) {
+
+    .cardImage {
+        height: 17rem;
+    }
 }
 
-#textRange{
-    border:none
+
+
+
+
+
+@media (min-width: 768px) {
+
+    body {
+        /*         background-color: red; */
+        grid-template-areas:
+            "titulo titulo"
+            "usuario usuario"
+            "card card"
+            "edsa edsa"
+            "sya sya"
+            "pago pago"
+            "rentados rentados";
+    }
+
+    .card {
+        width: 25rem;
+        box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
+    }
+
+    .cardImage {
+        height: 15rem;
+    }
+
+    .cardContainer {
+        width: 70%;
+    }
+
+
+    .botonVolver {
+        margin-top: 1rem;
+    }
+
+    /* .contenedorEntregaYDevolucion{
+    flex-direction: row;
+} */
+
+    .tituloRentado {
+        margin: 1.5rem;
+    }
+
+    .imagenRentado {
+        height: 18rem;
+    }
+
+    .checkbox {
+        margin: 0.85rem;
+    }
+
+    .numberText {
+        margin-left: 0.4rem;
+    }
+
+    .segurosTitulo,
+    .adicionalesTitulo,
+    .preguntaEntrega,
+    .preguntaDevolucion {
+        margin: 1rem;
+    }
+
+    .contenedorEDSA,
+    .contenedorPago {
+        width: 85%;
+        box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
+    }
+
+    .contenedorPorRentar,
+    .contenedorFechas,
+    .contenedorDetalle,
+    .contenedorTotal {
+        width: 80%;
+    }
+
 }
 
-.contenedorAdicionales,
-.contenedorSeguros{
-    display: flex;
-    align-items: center;
-    height: 40px;
 
-}
 
-.number{
-    width: 23px;
-}
-.checkbox{
-    margin: 9px;
-}
+@media (min-width: 992px) {
+    body {
+        /*         background-color: green; */
 
-.imagenRentado{
-    object-fit: cover;
-    width: 300px;
-    height: 200px;
-}
+    }
 
-.wrapper {
-    display: grid;
-    grid-template-areas:
-    "card card card"
-    "entrega devolucion pago"
-    "sya sya pago";
-}
+    .contenedorUsuario {
+        width: 75%;
+    }
 
-.cardContainer{
-grid-area: card;
-}
+    .cardContainer {
+        width: 100%;
+    }
 
-.contenedorEntrega{
-grid-area: entrega;
-}
+    .card {
+        width: 19rem;
+    }
 
-.contenedorDevolucion{
-grid-area: devolucion;
-}
+    .cardImage {
+        height: 12rem;
+    }
 
-.contenedorSegurosYAdicionales{
-grid-area: sya;
-}
+    .contenedorEDSA,
+    .contenedorPago {
+        width: 60%;
+    }
 
-.contenedorPago{
-grid-area: pago;
+    .imagenRentado {
+        height: 23rem;
+    }
+
+    .contenedorSegurosYAdicionales {
+        width: 80%;
+    }
+
+    .contenedorPorRentar,
+    .contenedorFechas,
+    .contenedorDetalle,
+    .contenedorTotal {
+        width: 75%;
+    }
 }

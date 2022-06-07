@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+
+
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 
 </head>
+
 <body>
-    <h1>
-        Simulador 
-    </h1>
-<div class="wrapper">
+    <h1 class="tituloPrincipal"></h1>
     <div class="contenedorUsuario">
-        <form action="" class="formUsuario"></form>
-        <input type="range" max="100000" name="" id="saldo">
-        <input type="text" name="" value="50000"id="textRange"></input>
+        <form action="" class="formUsuario">
+            <input type="range" max="100000" name="" class="saldoRangeUsuario">
+            <input type="text" name="" value="50000" class="textRangeUsuario">
+        </form>
     </div>
     <div class="cardContainer"></div>
-    <div class="contenedorEntrega">
+    <div class="contenedorEDSA">
+        <div class="contenedorEntregaYDevolucion">
+            <div class="contenedorEntrega"></div>
+            <div class="contenedorDevolucion"></div>
+        </div>
+        <div class="contenedorSegurosYAdicionales"></div>
     </div>
-    <div class="contenedorDevolucion">
-        <div class="contenedorDiasDevolucion"></div>
-    </div>
-    <div class="contenedorSegurosYAdicionales"></div>
-    <div class="contenedorPago">
-        <div class="contenedorBotonPagar"></div>
-    </div>
+    <div class="contenedorPago"></div>
     <div class="contenedorResumen"></div>
-    
     <div class="contenedorRentados">
-    
+        <div class="contenedorMostrarRentados"></div>
+        <div class="contenedorBotones"></div>
     </div>
-    <div class="contenedorBotones"></div>
-</div>
 
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>
-
-
-

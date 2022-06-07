@@ -3,19 +3,98 @@
     "marca":"Fiat",
     "modelo":"Cronos",
     "precio":5000,
-    "img":"https://www.autoweb.com.ar/wp-content/uploads/2021/08/cronos-1.8.jpg"
+    "img":"./img/cronos.jpg"
 },
 {
     "id":2,
     "marca":"Chevrolet",
     "modelo":"Onix",
     "precio":6000,
-    "img":"https://www.megautos.com/wp-content/uploads/2019/11/Nuevo-Onix-Hatch-dinamica.jpg"
+    "img":"./img/onix.jpg"
 },
 {
     "id":3,
     "marca":"Ford",
     "modelo":"Raptor",
     "precio":10000,
-    "img":"https://www.autoaubaine.com/special/images/dossier/Ford_F_150_Raptor.jpg"
-}] 
+    "img":"./img/raptor.jpg"
+},
+{
+    "id":4,
+    "marca":"Peugeot",
+    "modelo":"208",
+    "precio":4500,
+    "img":"./img/208.jpg"
+},
+{
+    "id":5,
+    "marca":"Toyota",
+    "modelo":"Hilux",
+    "precio":8000,
+    "img":"./img/hilux.jpg"
+},
+{
+    "id":6,
+    "marca":"Nissan",
+    "modelo":"Kicks",
+    "precio":7000,
+    "img":"./img/kicks.jpg"
+},
+{
+    "id":7,
+    "marca":"Toyota",
+    "modelo":"Hiace",
+    "precio":12000,
+    "img":"./img/hiance.jpg"
+},
+{
+    "id":8,
+    "marca":"Volkswagen",
+    "modelo":"Polo",
+    "precio":6000,
+    "img":"./img/polo.jpg"
+},
+{
+    "id":9,
+    "marca":"Mercedes-Benz",
+    "modelo":"GLE 300",
+    "precio":15000,
+    "img":"./img/gle.jpg"
+},
+{
+    "id":10,
+    "marca":"Toyota",
+    "modelo":"Corolla",
+    "precio":7000,
+    "img":"./img/corolla.jpg"
+},
+{
+    "id":11,
+    "marca":"Nissan",
+    "modelo":"Frontier",
+    "precio":9000,
+    "img":"./img/frontier.jpg"
+},
+{
+    "id":12,
+    "marca":"Fiat",
+    "modelo":"Toro",
+    "precio":7000,
+    "img":"./img/toro.jpg"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
+
+
