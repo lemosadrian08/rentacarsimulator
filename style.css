@@ -298,8 +298,6 @@ h3 {
     width: 100%;
 }
 
-
-
 .cardContainer {
     grid-area: card;
     display: flex;

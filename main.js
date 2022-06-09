@@ -294,8 +294,7 @@ formUsuario.onsubmit = (e) => {
 
 //Contenedor Entrega
 date1.onchange = () => {
-    console.log(diaSeleccionadoDevolucion[0] - diaSeleccionadoEntrega[0])
-    diaSeleccionadoEntrega.pop() 
+    diaSeleccionadoEntrega.pop()
     let fecha1 = new Date(date1.value)
     diaSeleccionadoEntregaFormato2 = formatoFecha2(date1.value)
     seleccion = fecha1.getTime()
@@ -362,7 +361,6 @@ botonVolver.onclick = () => {
     diaSeleccionadoDevolucionFormato2 = ""
     diaSeleccionadoEntrega.pop()
     diaSeleccionadoDevolucion.pop()
-    console.log(diaSeleccionadoEntrega)
     totalDias = 0
     date1.value = ""
     date2.value = ""
@@ -385,7 +383,7 @@ borrarRegistro.onclick = () => {
 //Empieza aca
 verificacionLS()
 
-//verifica el localstorage para ver si es la primera vez que se ingresa
+//verifica el localstorage para comprobar si es la primera vez que se ingresa
 function verificacionLS() {
     if (autosRentados == null) {
         autosRentados = []
@@ -403,7 +401,7 @@ function ingresarUsuario() {
     formUsuario.append(btnUsuario)
 }
 
-//boton crear--verificacion que no este vacio el ingreso de usuario
+//botón crear--verificación que no este vacío el ingreso de usuario
 function crearUsuario(usuario) {
     if (usuario != "") {
         contenedorUsuario.innerHTML = ""
@@ -424,7 +422,7 @@ const fetchAutos = () => {
             autosf = autos
         })
         .catch((error) => {
-            console.log(error)
+            Swal.fire('Error')
         })
 }
 
@@ -474,14 +472,14 @@ verAutos = (autos) => {
 
     })
 }
-//al presionar rentar guarda el id del auto seleccionado
+//al presionar rentar guarda, el id del auto seleccionado
 function rentarAuto(id1) {
     autoSeleccionado.pop()
     seleccion = autosf.find(auto => auto.id == id1)
     autoSeleccionado.push(seleccion)
 }
 
-// muestra la interface de Entrega Devolucion Seguros y adicionales(EDSA)  y una parte de la interface de detalle de pago 
+// muestra la interface de Entrega Devolución Seguros y adicionales(EDSA)  y una parte de la interface de detalle de pago 
 function mostrarInterface() {
     //Entrega
     contenedorEntrega.append(date1)
@@ -534,7 +532,6 @@ function diaDevolucion() {
     const autoAlmacenado = JSON.parse(localStorage.getItem("usuario"));
 
     if (diaSeleccionadoEntrega[0] == null) {
-        console.log("dia de entrega antes que dia de devolucion")
         //error por seleccionar el dia de devolucion antes que el de entrega
         Swal.fire('Seleccione el dia de entrega antes que el dia de devolucion.')
         diaSeleccionadoDevolucion.pop()
@@ -542,23 +539,20 @@ function diaDevolucion() {
 
     } else {
         if (autoAlmacenado == null) {
-            //en caso de que el localStorage este vacio pasa directamente a la funcion siguiente
+            //en caso de que el localStorage este vacío pasa directamente a la funcion siguiente
             preguntaPagoFuncion()
         } else {
-            console.log("filtro parte 1")
-            //filtro que depende de los dias seleccionados en el input date y de los autos reservados en el localStorage
+            //filtro que depende de los días seleccionados en el input date y de los autos reservados en el localStorage
             let filtroAuto = autoAlmacenado.filter((usuario) => usuario.modelo == autoSeleccionado[0].modelo)
             let filtroDia = filtroAuto.filter((usuario) =>
                 (usuario.diaSeleccionadoEntrega <= diaSeleccionadoEntrega[0]) && (diaSeleccionadoEntrega[0] <= usuario.diaSeleccionadoDevolucion) ||
                 (usuario.diaSeleccionadoEntrega <= diaSeleccionadoDevolucion[0]) && (diaSeleccionadoDevolucion[0] <= usuario.diaSeleccionadoDevolucion)
             )
             if (filtroDia.length == 0) {
-                console.log("filtro positivo")
-                //si el array esta vacio indica que el auto esta disponible y puede ser reservado en las fechas escogidas
+                //si el array esta vacío indica que el auto esta disponible y puede ser reservado en las fechas escogidas
                 preguntaPagoFuncion()
             } else {
                 //el array no esta vacio por lo tanto el auto ya fue seleccionado en las fechas escogidas
-                console.log("filtro negativo")
                 date1.value = ""
                 date2.value = ""
                 diaSeleccionadoEntrega.pop()
@@ -579,7 +573,6 @@ function preguntaPagoFuncion() {
         if ((diaSeleccionadoDevolucion[0] - diaSeleccionadoEntrega[0]) == 0) {
             totalDias = 1
             //en el caso de que el dia de entrega sea igual que el de devolucion el total de dias que la persona alquilaria el auto seria 1
-            console.log("dia igual e y d")
         } else if (diaSeleccionadoDevolucion[0] < diaSeleccionadoEntrega[0]) {
             //en el caso de que el dia de entrega sea mayor que el de devolucion envia un error
             contenedorTotal.innerHTML = ""
@@ -589,16 +582,13 @@ function preguntaPagoFuncion() {
             diaSeleccionadoEntrega.pop()
             diaSeleccionadoDevolucion.pop()
             Swal.fire('El día de entrega no puede ser mayor que el día de devolución.<br>Seleccione nuevamente el dia de entrega.')
-            console.log("error: entrga mayor que devolucion")
         } else {
             //no hay errores y se calcula el total de dias
             totalDias = (diaSeleccionadoDevolucion[0] - diaSeleccionadoEntrega[0]) / (1000 * 60 * 60 * 24)
-            console.log("exelente")
         }
     } else {
         //esto evita que se muestre la interface de detalle de pago, en el caso de que solo se seleccione el dia de entrga o en el caso de que se interactue con los checkbox o numbers de los servicios adicionales antes de elegir los dias
         totalDias = 0
-        console.log("seleccion del dia de entrega sin seleccionar devolucion o seleccion de adicionales")
     }
 
 
