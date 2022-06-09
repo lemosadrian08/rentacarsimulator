@@ -280,7 +280,6 @@ h3 {
 }
 
 .number {
-    width: 2rem;
     font-family: 'Oswald', sans-serif;
     font-size: 1rem;
 }
@@ -349,10 +348,6 @@ h3 {
     flex-direction: column;
     background-color: white;
     width: 93%;
-
-
-
-
 }
 
 .contenedorPago {
@@ -367,8 +362,13 @@ h3 {
     box-shadow: 0.4rem 0.5rem 0.5rem rgb(206, 206, 206)
 }
 
-.pSyA {
-    margin: 0.4rem;
+.checkboxText {
+    margin: 0.5rem 0 0.5rem 1.3rem;
+    line-height: 1.5rem;
+}
+
+.numberText {
+    margin: 0.5rem;
     line-height: 1.5rem;
 }
 
@@ -376,9 +376,7 @@ h3 {
     padding-bottom: 1rem;
 }
 
-.numberText {
-    margin-left: 1rem;
-}
+
 
 .pPago {
     line-height: 2rem;
@@ -480,7 +478,12 @@ h3 {
     .cardImage {
         height: 17rem;
     }
+
+
+
+
 }
+
 
 
 
@@ -535,9 +538,7 @@ h3 {
         margin: 0.85rem;
     }
 
-    .numberText {
-        margin-left: 0.4rem;
-    }
+
 
     .segurosTitulo,
     .adicionalesTitulo,
@@ -559,6 +560,9 @@ h3 {
         width: 80%;
     }
 
+    .numberText {
+        margin-left: 1rem;
+    }
 }
 
 

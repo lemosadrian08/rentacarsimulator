@@ -123,7 +123,7 @@ segurosTitulo.className = "segurosTitulo"
 const contenedorReduccion = document.createElement("div")
 contenedorReduccion.className = "contenedorSeguros"
 const coverturaReduccion = document.createElement("p")
-coverturaReduccion.className = "pSyA numberText"
+coverturaReduccion.className = "checkboxText"
 coverturaReduccion.textContent = `Cobertura Reducción - Cobertura que reduce 100% la franquicia por daños de colisión - $2000/dia`
 const checkboxReduccion = document.createElement("input")
 checkboxReduccion.setAttribute("type", "checkbox")
@@ -131,7 +131,7 @@ checkboxReduccion.className = "checkbox"
 const contenedorIntegral = document.createElement("div")
 contenedorIntegral.className = "contenedorSeguros"
 const coverturaIntegral = document.createElement("p")
-coverturaIntegral.className = "pSyA numberText"
+coverturaIntegral.className = "checkboxText"
 coverturaIntegral.textContent = `Cobertura Integral - Reduce 100% la franquicia por daños de colisión y vuelco - $3000/dia`
 const checkboxIntegral = document.createElement("input")
 checkboxIntegral.setAttribute("type", "checkbox")
@@ -142,7 +142,7 @@ adicionalesTitulo.className = "adicionalesTitulo"
 const contenedorAeropuerto = document.createElement("div")
 contenedorAeropuerto.className = "contenedorAdicionales"
 const aeropuerto = document.createElement("p")
-aeropuerto.className = "pSyA numberText"
+aeropuerto.className = "checkboxText"
 aeropuerto.textContent = `Cargo de Aeropuerto - Cargo por retiro o devolución en Aeropuerto - $2500/reserva`
 const checkboxAeropuerto = document.createElement("input")
 checkboxAeropuerto.setAttribute("type", "checkbox")
@@ -150,7 +150,7 @@ checkboxAeropuerto.className = "checkbox"
 const contenedorBebe = document.createElement("div")
 contenedorBebe.className = "contenedorAdicionales"
 const bebe = document.createElement("p")
-bebe.className = "pSyA"
+bebe.className = "numberText"
 bebe.textContent = `Silla para bebés - Silla especial para bebés entre 1 y 3 años - $500/dia`
 const numberBebe = document.createElement("input")
 numberBebe.setAttribute("type", "number")
@@ -161,7 +161,7 @@ numberBebe.className = "number"
 const contenedorGPS = document.createElement("div")
 contenedorGPS.className = "contenedorAdicionales"
 const GPS = document.createElement("p")
-GPS.className = "pSyA numberText"
+GPS.className = "checkboxText"
 GPS.textContent = `GPS - Sistema de navegación para vehículos - $600/dia`
 const checkboxGPS = document.createElement("input")
 checkboxGPS.setAttribute("type", "checkbox")
@@ -169,7 +169,7 @@ checkboxGPS.className = "checkbox"
 const contenedorJoven = document.createElement("div")
 contenedorJoven.className = "contenedorAdicionales"
 const joven = document.createElement("p")
-joven.className = "pSyA"
+joven.className = "numberText"
 joven.textContent = `Conductor Joven - Conductor de entre 18 y 20 años, apto para conducir - $1100/dia`
 const numberJoven = document.createElement("input")
 numberJoven.setAttribute("type", "number")
@@ -181,7 +181,7 @@ numberJoven.className = "number"
 const contenedorConductorAdicional = document.createElement("div")
 contenedorConductorAdicional.className = "contenedorAdicionales"
 const conductorAdicional = document.createElement("p")
-conductorAdicional.className = "pSyA"
+conductorAdicional.className = "numberText"
 conductorAdicional.textContent = `Conductor adicional - Persona autorizada para conducir el vehículo aparte del conductor principal - $330/dia`
 const numberConductorAdicional = document.createElement("input")
 numberConductorAdicional.setAttribute("type", "number")
@@ -192,7 +192,7 @@ numberConductorAdicional.className = "number"
 const contenedorBooster = document.createElement("div")
 contenedorBooster.className = "contenedorAdicionales"
 const booster = document.createElement("p")
-booster.className = "pSyA booster"
+booster.className = "numberText booster"
 booster.textContent = `Booster(4-10 años) - Silla especial para niños de 4 a 10 años - $600/dia`
 const numberBooster = document.createElement("input")
 numberBooster.setAttribute("type", "number")
@@ -534,7 +534,7 @@ function diaDevolucion() {
     const autoAlmacenado = JSON.parse(localStorage.getItem("usuario"));
 
     if (diaSeleccionadoEntrega[0] == null) {
-        console.log("hola5")
+        console.log("dia de entrega antes que dia de devolucion")
         //error por seleccionar el dia de devolucion antes que el de entrega
         Swal.fire('Seleccione el dia de entrega antes que el dia de devolucion.')
         diaSeleccionadoDevolucion.pop()
@@ -582,7 +582,7 @@ function preguntaPagoFuncion() {
             console.log("dia igual e y d")
         } else if (diaSeleccionadoDevolucion[0] < diaSeleccionadoEntrega[0]) {
             //en el caso de que el dia de entrega sea mayor que el de devolucion envia un error
-            contenedorbtnPagar.innerHTML = ""
+            contenedorTotal.innerHTML = ""
             totalDias = 0
             date1.value = ""
             date2.value = ""
